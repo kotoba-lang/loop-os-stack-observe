@@ -1,0 +1,12 @@
+;; kotoba-lang/loop-os-stack-observe — ADR-2809050100 gap-2 tranching loop.
+{:paths ["src" "bin" "test" "resources"]
+ :deps {io.github.kotoba-lang/machine
+        {:git/url "https://github.com/kotoba-lang/machine.git"
+         :git/sha "d045768cf75bf3e50bbb5fefa1a0b5652852a5f3"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]}
+  :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
+         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test" "--fail-level" "error"]}}}

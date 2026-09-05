@@ -1,0 +1,20 @@
+;; ADR-2809050100 §6 gap ledger — the plan of record.
+;; Statuses: :open -> :captured -> :closed. Dates on every transition.
+;; Closing requires the three-index re-run to show a hit.
+[{:gap/id :repo-maturity-regen
+  :gap/status :closed
+  :gap/closed-date "2026-09-05"
+  :gap/evidence "manifest/repo-maturity.edn regenerated 4264/4264 (superproject b596f2d)"}
+ {:gap/id :hw-specs-uefi-nvme-usb-wifi-ext4
+  :gap/status :closed
+  :gap/closed-date "2026-09-05"
+  :gap/evidence "machine d045768 tranche 1: 5 descriptors, machine.core validation round-trip green"}
+ {:gap/id :wayland-protocol-corpus
+  :gap/status :open}
+ {:gap/id :unicode-normalization-and-shaping
+  :gap/status :open}
+ {:gap/id :linker-elf-surface
+  :gap/status :open}
+ {:gap/id :wifi-chipset-probe
+  :gap/status :open
+  :gap/note "802.11ax generic descriptor is :assumed; real chipsets 1-2 need a host probe stamped :measured"}]
