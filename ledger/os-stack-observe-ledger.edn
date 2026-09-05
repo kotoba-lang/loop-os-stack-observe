@@ -1,1 +1,2 @@
 {:event/type :os-stack-observe-cycle, :event/at "2026-09-05", :transition {:gap :wayland-protocol-corpus :from :open :to :captured}, :evidence "org-freedesktop-wayland 573aa1d registered west 09b11e6", :actor "itonami", :provenance :propose-only}
+{:event/type :os-stack-observe-cycle, :event/at "2026-09-05", :transition {:gap :unicode-normalization-and-shaping :from :open :to :captured}, :evidence "org-unicode 38acf59 registered west 8837ae5", :actor "itonami", :provenance :propose-only}
