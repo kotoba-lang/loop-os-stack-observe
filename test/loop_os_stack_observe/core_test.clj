@@ -34,8 +34,8 @@
 
 (deftest gap-ledger-matches-measured-state
   (let [obs (loop/observe-gaps "resources/gaps/gap-ledger.edn")]
-    (testing "2 closed, 4 captured, 0 open as of 2026-09-05 post-wifi-probe"
-      (is (= 2 (count (:closed obs))))
+    (testing "3 closed, 3 captured, 0 open as of 2026-09-05 post-tranche-2 (wayland core protocol closed)"
+      (is (= 3 (count (:closed obs))))
       (is (zero? (count (:open obs)))))
     (testing "captured gaps carry evidence and a date"
       (doseq [g (:open obs)]
