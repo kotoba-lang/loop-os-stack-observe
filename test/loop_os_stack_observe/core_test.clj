@@ -32,24 +32,24 @@
                          (assoc-in valid-nvme-descriptor [:storage 0 :max-transfer-bytes] 512)))
                    :storage-transfer-smaller-than-block))))
 
-(deftest gap-ledger-seeds-match-measured-state
+(deftest gap-ledger-matches-measured-state
   (let [obs (loop/observe-gaps "resources/gaps/gap-ledger.edn")]
-    (testing "2 closed, 4 open as measured 2026-09-05"
+    (testing "2 closed, 1 captured, 3 open as of 2026-09-05 post-tranche-2"
       (is (= 2 (count (:closed obs))))
-      (is (= 4 (count (:open obs)))))
-    (testing "dependency order: first open gap is wayland"
-      (is (= :wayland-protocol-corpus (:gap/id (first (:open obs))))))))
+      (is (= 3 (count (:open obs)))))
+    (testing "dependency order: next open gap is unicode"
+      (is (= :unicode-normalization-and-shaping (:gap/id (first (:open obs))))))))
 
 (deftest next-tranche-picks-first-open-gap
   (let [t (loop/next-tranche (loop/observe-gaps "resources/gaps/gap-ledger.edn"))]
-    (is (= :wayland-protocol-corpus (:gap t)))
+    (is (= :unicode-normalization-and-shaping (:gap t)))
     (is (seq (:action t)))))
 
 (deftest run-cycle-appends-evidence
   (let [tmp (doto (java.io.File/createTempFile "osstack" ".edn") .delete)
         r (loop/run-cycle! {:root "." :ledger-path (.getPath tmp)})]
     (is (= :os-stack-observe-cycle (:event/type (:entry r))))
-    (is (= 4 (count (:gaps-open-list (:entry r)))))
+    (is (= 3 (count (:gaps-open-list (:entry r)))))
     (is (.exists (java.io.File. (.getPath tmp))))
     ;; append-only: run again, ledger grows
     (loop/run-cycle! {:root "." :ledger-path (.getPath tmp)})
