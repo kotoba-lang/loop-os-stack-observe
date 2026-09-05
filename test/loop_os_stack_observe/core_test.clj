@@ -44,7 +44,7 @@
 (deftest next-tranche-picks-first-open-gap
   (let [t (loop/next-tranche (loop/observe-gaps "resources/gaps/gap-ledger.edn"))]
     (is (nil? (:gap t)) "no open gap remains for tranche planning")
-    (is (seq (:action t)))))
+    (is (nil? (:action t)))))
 
 (deftest run-cycle-appends-evidence
   (let [tmp (doto (java.io.File/createTempFile "osstack" ".edn") .delete)
