@@ -10,13 +10,13 @@
   :gap/closed-date "2026-09-05"
   :gap/evidence "machine d045768 tranche 1: 5 descriptors, machine.core validation round-trip green"}
  {:gap/id :wayland-protocol-corpus
-  :gap/status :captured
-  :gap/captured-date "2026-09-05"
-  :gap/evidence "org-freedesktop-wayland 573aa1d tranche 1: core interface datom model, object-table discipline, wire-step sequencing (5 tests 42 assertions). Remaining: full interface coverage (wl_buffer, wl_shm_pool, wl_seat...), xdg-shell, presentation-time."}
+  :gap/status :closed
+  :gap/closed-date "2026-09-05"
+  :gap/evidence "org-freedesktop-wayland 7cd1b7c: FULL core protocol coverage — 13 interfaces (display/registry/callback/surface/compositor/shm/shm_pool/buffer/output/seat/pointer/keyboard/touch), object-table discipline, wire-step sequencing (7 tests 47 assertions). Standard extensions (xdg-shell, presentation-time) are separate public standards — new gap if/when the stack needs them."}
  {:gap/id :unicode-normalization-and-shaping
   :gap/status :captured
   :gap/captured-date "2026-09-05"
-  :gap/evidence "org-unicode 38acf59 tranche 1: UTF-8 state machine (overlong/surrogate rejection per Table 3-7) + normalization algorithm model with fixture char-db (10 tests 25 assertions). Remaining: real UCD tables (versioned), text shaping (harfbuzz-shaped contract), collation."}
+  :gap/evidence "org-unicode tranche 1 (38acf59: UTF-8 state machine + normalization algorithms) + tranche 2 (e6a7ba3: versioned UCD table slice, Unicode 15.0.0 — ccc/canonical/compat decomp/composition exclusions/primary composition). Remaining: text shaping (harfbuzz-shaped contract), collation — both are their own table-mass corpora."}
  {:gap/id :linker-elf-surface
   :gap/status :captured
   :gap/captured-date "2026-09-05"
