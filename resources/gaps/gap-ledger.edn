@@ -10,7 +10,9 @@
   :gap/closed-date "2026-09-05"
   :gap/evidence "machine d045768 tranche 1: 5 descriptors, machine.core validation round-trip green"}
  {:gap/id :wayland-protocol-corpus
-  :gap/status :open}
+  :gap/status :captured
+  :gap/captured-date "2026-09-05"
+  :gap/evidence "org-freedesktop-wayland 573aa1d tranche 1: core interface datom model, object-table discipline, wire-step sequencing (5 tests 42 assertions). Remaining: full interface coverage (wl_buffer, wl_shm_pool, wl_seat...), xdg-shell, presentation-time."}
  {:gap/id :unicode-normalization-and-shaping
   :gap/status :open}
  {:gap/id :linker-elf-surface
