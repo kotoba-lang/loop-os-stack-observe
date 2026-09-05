@@ -18,7 +18,10 @@
   :gap/captured-date "2026-09-05"
   :gap/evidence "org-unicode 38acf59 tranche 1: UTF-8 state machine (overlong/surrogate rejection per Table 3-7) + normalization algorithm model with fixture char-db (10 tests 25 assertions). Remaining: real UCD tables (versioned), text shaping (harfbuzz-shaped contract), collation."}
  {:gap/id :linker-elf-surface
-  :gap/status :open}
+  :gap/status :captured
+  :gap/captured-date "2026-09-05"
+  :gap/evidence "three-index re-run hit: kotoba-object 0.823 already owns ELF64/PE32+/Mach-O record encoders, symbols, RELA relocations (README boundary: linker POLICY excluded by design). Remaining: link policy (symbol resolution, section layout, link order) — a future repo, not part of tranche 1."}
  {:gap/id :wifi-chipset-probe
-  :gap/status :open
-  :gap/note "802.11ax generic descriptor is :assumed; real chipsets 1-2 need a host probe stamped :measured"}]
+  :gap/status :captured
+  :gap/captured-date "2026-09-05"
+  :gap/evidence "host probe: Broadcom 0x4387 (Wi-Fi 6), 802.11ax ch36 80MHz MCS 10 — machine fb6bbd0 descriptor flipped :assumed -> :measured with system_profiler source. 1 chipset (scope 1-2); second chipset only if/when present."}]

@@ -34,22 +34,23 @@
 
 (deftest gap-ledger-matches-measured-state
   (let [obs (loop/observe-gaps "resources/gaps/gap-ledger.edn")]
-    (testing "2 closed, 2 captured, 2 open as of 2026-09-05 post-unicode-tranche"
+    (testing "2 closed, 4 captured, 0 open as of 2026-09-05 post-wifi-probe"
       (is (= 2 (count (:closed obs))))
-      (is (= 2 (count (:open obs)))))
-    (testing "dependency order: next open gap is linker/elf"
-      (is (= :linker-elf-surface (:gap/id (first (:open obs))))))))
+      (is (zero? (count (:open obs)))))
+    (testing "captured gaps carry evidence and a date"
+      (doseq [g (:open obs)]
+        (is (seq (:gap/evidence g)))))))
 
 (deftest next-tranche-picks-first-open-gap
   (let [t (loop/next-tranche (loop/observe-gaps "resources/gaps/gap-ledger.edn"))]
-    (is (= :linker-elf-surface (:gap t)))
+    (is (nil? (:gap t)) "no open gap remains for tranche planning")
     (is (seq (:action t)))))
 
 (deftest run-cycle-appends-evidence
   (let [tmp (doto (java.io.File/createTempFile "osstack" ".edn") .delete)
         r (loop/run-cycle! {:root "." :ledger-path (.getPath tmp)})]
     (is (= :os-stack-observe-cycle (:event/type (:entry r))))
-    (is (= 2 (count (:gaps-open-list (:entry r)))))
+    (is (zero? (count (:gaps-open-list (:entry r)))))
     (is (.exists (java.io.File. (.getPath tmp))))
     ;; append-only: run again, ledger grows
     (loop/run-cycle! {:root "." :ledger-path (.getPath tmp)})
