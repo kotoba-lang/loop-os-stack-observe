@@ -7,7 +7,7 @@
 ;; superproject's propose -> govern flow (worktree branch, server-side merge).
 (ns loop-os-stack-observe.core
   (:require [clojure.edn :as edn]
-            [clojure.string :as str]))
+            [kotoba.lang.text :as str]))
 
 (def format-id :kotoba.machine/v1)
 
