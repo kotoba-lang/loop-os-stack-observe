@@ -1,6 +1,11 @@
 ;; kotoba-lang/loop-os-stack-observe — ADR-2809050100 gap-2 tranching loop.
 {:paths ["src" "bin" "test" "resources"]
- :deps {io.github.kotoba-lang/machine
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}
+       io.github.kotoba-lang/machine
         {:git/url "https://github.com/kotoba-lang/machine.git"
          :git/sha "d045768cf75bf3e50bbb5fefa1a0b5652852a5f3"}}
  :aliases
