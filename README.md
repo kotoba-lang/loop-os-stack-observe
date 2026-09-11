@@ -59,7 +59,7 @@ descriptor 生成は `machine.core` の閉じた key set に従い、**provenanc
 
 ```bash
 # west workspace で machine が sibling として checkout されていること
-nbb --classpath "../machine/src:src" bin/run.cljs
+nbb --classpath "../machine/src:src" bin/run.cljk
 ```
 
 observe は superproject ルートの 3 索引を実行し、evaluate は gap ledger を読み、
