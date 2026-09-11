@@ -1,6 +1,6 @@
 ;; Weekly snapshot for the cron job: run the observe cycle and emit a compact
 ;; status report. Runnable from the superproject root:
-;;   clojure -Sdeps '{:paths ["src"]}' -M orgs/kotoba-lang/loop-os-stack-observe/scripts/observe-snapshot.cljk
+;;   kbb -Sdeps '{:paths ["src"]}' -M orgs/kotoba-lang/loop-os-stack-observe/scripts/observe-snapshot.cljk
 (require '[loop-os-stack-observe.core :as loop]
          '[clojure.edn :as edn])
 
