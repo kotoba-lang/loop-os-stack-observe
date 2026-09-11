@@ -19,7 +19,7 @@ taxonomy: この repo は ordering と gap ledger を所有する。**hardware f
 ## なぜ在るか
 
 ADR-2809050100 が OS+browser stack の計画を gap ledger に置いた。gap の在り方は
-3 索引（`nbb scripts/concept-lookup.cljs` / `nbb scripts/repo-search.cljs` /
+3 索引（`kbb --backend sci scripts/concept-lookup.cljk` / `kbb --backend sci scripts/repo-search.cljk` /
 `manifest/repo-maturity.edn`）を引いて初めて測定できる — prose の「探してから結論
 せよ」を機械化したのがこの loop である。実測（2026-09-04、規則が生まれた日）では
 agent が 3 回「無い」と誤答し、3 回とも 1 コマンドで見つかった。
@@ -59,7 +59,7 @@ descriptor 生成は `machine.core` の閉じた key set に従い、**provenanc
 
 ```bash
 # west workspace で machine が sibling として checkout されていること
-nbb --classpath "../machine/src:src" bin/run.cljk
+kbb --backend sci --classpath "../machine/src:src" bin/run.cljk
 ```
 
 observe は superproject ルートの 3 索引を実行し、evaluate は gap ledger を読み、
