@@ -64,8 +64,8 @@
    Returns {:concept-lookup N :repo-search N :maturity [paths]}.
    A gap may only move :open -> :captured when at least one index hits."
   [root terms]
-  (let [concept (sh "nbb" "scripts/concept-lookup.cljs" (first terms))
-        search (sh "nbb" "scripts/repo-search.cljs" (str/join " " terms))
+  (let [concept (sh "nbb" "scripts/concept-lookup.cljk" (first terms))
+        search (sh "nbb" "scripts/repo-search.cljk" (str/join " " terms))
         ;; repo-maturity is a local EDN scan, not a subprocess
         mat (let [path (str root "/manifest/repo-maturity.edn")
                   f (java.io.File. path)]
