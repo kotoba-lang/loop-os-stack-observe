@@ -6,7 +6,7 @@
 ;; never pushes to machine/ioplan directly. Landing happens through the
 ;; superproject's propose -> govern flow (worktree branch, server-side merge).
 (ns loop-os-stack-observe.core
-  (:require [clojure.edn :as edn]
+  (:require [kotoba.io :as kio] [clojure.edn :as edn]
             [kotoba.lang.text :as str]))
 
 (def format-id :kotoba.machine/v1)
@@ -36,8 +36,8 @@
     :gap/note "802.11ax generic descriptor is :assumed; real chipsets need a host probe"}])
 
 (defn- read-ledger [path]
-  (let [f (java.io.File. path)]
-    (if (.exists f)
+  (let [f (kio/file path)]
+    (if (kio/exists? f)
       (edn/read-string (slurp f))
       initial-gaps)))
 
@@ -68,8 +68,8 @@
         search (sh "nbb" "scripts/repo-search.cljk" (str/join " " terms))
         ;; repo-maturity is a local EDN scan, not a subprocess
         mat (let [path (str root "/manifest/repo-maturity.edn")
-                  f (java.io.File. path)]
-              (if (.exists f)
+                  f (kio/file path)]
+              (if (kio/exists? f)
                 (->> (str/split (slurp f) #"\n")
                      (filter #(str/includes? % "composite"))
                      count)
@@ -140,11 +140,11 @@
                :next-tranche tranche
                :index-hits hits}]
     ;; record-evidence: append-only
-    (let [f (java.io.File. (if (.startsWith ledger-path "/")
+    (let [f (kio/file (if (.startsWith ledger-path "/")
                              ledger-path
                              (str root "/" ledger-path)))
-          _ (when-let [parent (.getParentFile f)]
-              (.mkdirs parent))
+          _ (when-let [parent (kio/parent-file f)]
+              (kio/mkdirs parent))
           entry-str (pr-str entry)]
       (spit f (str entry-str "\n") :append true))
     {:entry entry
