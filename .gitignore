@@ -2,3 +2,4 @@
 .clerk/
 .nrepl-port
 var/
+.nbb/
